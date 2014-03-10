@@ -4,6 +4,7 @@
         <cs:dependency name="org.mxunit.eclipseplugin.update" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.platform" componentType="osgi.bundle"/>
         <cs:dependency name="org.junit" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.jdt.junit" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.ui" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.debug.ui" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.ui.browser" componentType="osgi.bundle"/>
