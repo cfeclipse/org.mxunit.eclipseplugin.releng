@@ -2,6 +2,22 @@
 <cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.mxunit.eclipseplugin.releng" componentType="buckminster" version="1.0.0">
     <cs:dependencies>
         <cs:dependency name="org.mxunit.eclipseplugin.update" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.platform" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.debug.ui" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.browser" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.cheatsheets" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.console" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.editors" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.forms" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.ide" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.intro" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.navigator" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.views" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.workbench" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.workbench.texteditor" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature"/>
+
     </cs:dependencies>
     <cs:actions>
         <cs:public name="clear.site.eclipse" actor="ant" always="true">
