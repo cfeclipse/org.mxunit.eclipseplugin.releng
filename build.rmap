@@ -4,28 +4,46 @@
   <rm:property key="eclipse.svn.prefix" value="http://dev.eclipse.org/svnroot"/>
   <rm:property key="build.type" value="R"/>
   <rm:property key="git.clone.dir" value="${src.dir}"/>
-  <rm:locator pattern="^org\.mxunit\..*" searchPathRef="mxunit" />
+  <rm:locator pattern="^org\.mxunit\.eclipseplugin\.releng" searchPathRef="buckminster" />
+  <rm:locator pattern="^org\.mxunit\.eclipseplugin$" searchPathRef="mxunitplugin" />
+  <rm:locator pattern="^org\.mxunit\.eclipseplugin\.feature" searchPathRef="mxunitfeature" />
+  <rm:locator pattern="^org\.mxunit\.eclipseplugin\.update" searchPathRef="mxunitupdatesite" />
 
   <rm:locator searchPathRef="platform" failOnError="false"/>
   <rm:locator searchPathRef="juno" failOnError="false"/>
   <rm:locator searchPathRef="orbit"/>
 
-	<rm:searchPath name="mxunit">
-	    <rm:provider componentTypes="eclipse.feature" readerType="git">
-	      <rm:property key="git.remote.uri" value="git://github.com/mxunit/org.mxunit.eclipseplugin.feature.git"/>
-	      <rm:uri format="{0}/org.mxunit.eclipseplugin.feature">
+	<rm:searchPath name="buckminster">
+	    <rm:provider componentTypes="buckminster" readerType="git">
+	      <rm:property key="git.remote.uri" value="git://github.com/cfeclipse/org.mxunit.eclipseplugin.releng.git"/>
+	      <rm:uri format="{0}/org.mxunit.eclipseplugin.releng">
 	        <bc:propertyRef key="git.clone.dir"/>
 	      </rm:uri>
 	    </rm:provider>
+	</rm:searchPath>
+
+	<rm:searchPath name="mxunitplugin">
 	    <rm:provider componentTypes="osgi.bundle" readerType="git">
 	      <rm:property key="git.remote.uri" value="git://github.com/mxunit/org.mxunit.eclipseplugin.git"/>
 	      <rm:uri format="{0}/org.mxunit.eclipseplugin">
 	        <bc:propertyRef key="git.clone.dir"/>
 	      </rm:uri>
 	    </rm:provider>
-	    <rm:provider componentTypes="buckminster" readerType="git">
-	      <rm:property key="git.remote.uri" value="git://github.com/cfeclipse/org.mxunit.eclipseplugin.releng.git"/>
-	      <rm:uri format="{0}/org.mxunit.eclipseplugin.releng">
+	</rm:searchPath>
+
+	<rm:searchPath name="mxunitfeature">
+	    <rm:provider componentTypes="eclipse.feature" readerType="git">
+	      <rm:property key="git.remote.uri" value="git://github.com/mxunit/org.mxunit.eclipseplugin.feature.git"/>
+	      <rm:uri format="{0}/org.mxunit.eclipseplugin.feature">
+	        <bc:propertyRef key="git.clone.dir"/>
+	      </rm:uri>
+	    </rm:provider>
+	</rm:searchPath>
+
+	<rm:searchPath name="mxunitupdatesite">
+	    <rm:provider componentTypes="eclipse.feature" readerType="git">
+	      <rm:property key="git.remote.uri" value="git://github.com/cfeclipse/org.mxunit.eclipseplugin.update.git"/>
+	      <rm:uri format="{0}/org.mxunit.eclipseplugin.update">
 	        <bc:propertyRef key="git.clone.dir"/>
 	      </rm:uri>
 	    </rm:provider>
