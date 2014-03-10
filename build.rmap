@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
+  <rm:property key="eclipse.download.prefix" value="http://download.eclipse.org"/>
+  <rm:property key="eclipse.svn.prefix" value="http://dev.eclipse.org/svnroot"/>
+  <rm:property key="build.type" value="R"/>
+  <rm:property key="git.clone.dir" value="${src.dir}"/>
+  <rm:locator pattern="^org\.mxunit\..*" searchPathRef="mxunit" />
+
+  <rm:locator searchPathRef="platform" failOnError="false"/>
+  <rm:locator searchPathRef="juno" failOnError="false"/>
+  <rm:locator searchPathRef="orbit"/>
+
+	<rm:searchPath name="mxunit">
+	    <rm:provider componentTypes="eclipse.feature" readerType="git">
+	      <rm:property key="git.remote.uri" value="git://github.com/mxunit/org.mxunit.eclipseplugin.feature.git"/>
+	      <rm:uri format="{0}/org.mxunit.eclipseplugin.feature">
+	        <bc:propertyRef key="git.clone.dir"/>
+	      </rm:uri>
+	    </rm:provider>
+	    <rm:provider componentTypes="osgi.bundle" readerType="git">
+	      <rm:property key="git.remote.uri" value="git://github.com/mxunit/org.mxunit.eclipseplugin.git"/>
+	      <rm:uri format="{0}/org.mxunit.eclipseplugin">
+	        <bc:propertyRef key="git.clone.dir"/>
+	      </rm:uri>
+	    </rm:provider>
+	    <rm:provider componentTypes="buckminster" readerType="git">
+	      <rm:property key="git.remote.uri" value="git://github.com/cfeclipse/org.mxunit.eclipseplugin.releng.git"/>
+	      <rm:uri format="{0}/org.mxunit.eclipseplugin.releng">
+	        <bc:propertyRef key="git.clone.dir"/>
+	      </rm:uri>
+	    </rm:provider>
+	</rm:searchPath>
+
+  <rm:searchPath name="platform">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/releases/kepler">
+        <bc:propertyRef key="eclipse.download.prefix"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="juno">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/releases/juno">
+        <bc:propertyRef key="eclipse.download.prefix"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="orbit">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/tools/orbit/downloads/drops/R20140114142710/repository">
+        <bc:propertyRef key="eclipse.download.prefix"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+</rm:rmap>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.mxunit.eclipseplugin.releng" componentType="buckminster" version="1.0.0">
+    <cs:dependencies>
+        <cs:dependency name="org.mxunit.eclipseplugin.site" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.ui" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.browser" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.cheatsheets" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.console" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.editors" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.forms" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.ide" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.intro" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.navigator" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.views" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.workbench" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.ui.workbench.texteditor" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.rcp" componentType="osgi.bundle"/>
+    </cs:dependencies>
+    <cs:actions>
+        <cs:public name="clear.site.eclipse" actor="ant" always="true">
+            <cs:actorProperties>
+                <cs:property key="buildFile" value="buckminster.ant"/>
+                <cs:property key="targets" value="clear.directory"/>
+            </cs:actorProperties>
+            <cs:properties>
+                <cs:property key="directory" value="${plugin.p2.dir}"/>
+            </cs:properties>
+        </cs:public>
+
+        <cs:public name="merge.site" actor="ant">
+            <cs:actorProperties>
+                <cs:property key="buildFile" value="buckminster.ant"/>
+                <cs:property key="targets" value="merge.site"/>
+            </cs:actorProperties>
+            <cs:properties>
+                <cs:property key="p2.source" value="${plugin.p2.source}"/>
+                <cs:property key="p2.dest" value="${plugin.p2.dest}"/>
+            </cs:properties>
+        </cs:public>
+        
+        <cs:public name="promote.site.eclipse" actor="ant">
+            <cs:actorProperties>
+                <cs:property key="buildFileId" value="buckminster.pdetasks"/>
+                <cs:property key="targets" value="copy.group"/>
+            </cs:actorProperties>
+            <cs:prerequisites alias="action.requirements">
+                <cs:attribute name="site.p2" component="org.cfeclipse.update"/>
+                <cs:attribute name="clear.site.eclipse" contributor="false"/>
+            </cs:prerequisites>
+            <cs:products alias="action.output" base="${plugin.p2.dir}"/>
+        </cs:public>
+        <cs:public name="promote.sites.to.archive" actor="ant">
+            <cs:actorProperties>
+                <cs:property key="buildFileId" value="buckminster.pdetasks"/>
+                <cs:property key="targets" value="copy.group"/>
+            </cs:actorProperties>
+            <cs:prerequisites alias="action.requirements">
+                <cs:attribute name="site.zips"/>
+            </cs:prerequisites>
+            <cs:products alias="action.output" base="${buckminster.archive.area}/archivedsite${site.suffix}/"/>
+        </cs:public>
+    </cs:actions>
+    <cs:groups>
+        <cs:public name="promote">
+            <cs:attribute name="promote.site.eclipse"/>
+            <cs:attribute name="promote.sites.to.archive"/>
+        </cs:public>
+        <cs:public name="site.zips">
+            <cs:attribute name="site.p2.zip" component="org.cfeclipse.update"/>
+        </cs:public>
+    </cs:groups>
+</cs:cspec>

@@ -1,0 +1,11 @@
+#setpref 'org.eclipse.buckminster.pde.targetOS=macosx'
+#setpref 'org.eclipse.buckminster.pde.targetWS=cocoa'
+#setpref 'org.eclipse.buckminster.pde.targetArch=x86_64'
+setpref targetPlatformPath="${target.platform.dir}"
+#importtargetdefinition -A "${script.dir}/indigo.target"
+##generate signing keys: keytool -genkeypair -keystore <path to keystore file> -alias signing
+import -D branchTagPath="${branchTagPath}" -P ${user.home}/cfeclipse.properties -P ${script.dir}/build.properties ${src.dir}/org.mxunit.eclipseplugin.releng/build.cquery
+build -P ${user.home}/cfeclipse.properties -P ${script.dir}/build.properties --thorough
+#perform -D target.os=* -D target.ws=* -D target.arch=* -D site.pack200=true org.cfeclipse.update#site.p2
+#junit -P ${script.dir}/build.properties -l org.eclipse.buckminster.tests/AllTests.launch -o ${buckminster.output.root}/testReport.xml --terseXML --flatXML
+perform -D dist.dir="${dist.dir}" -D site.pack200=true -P ${user.home}/cfeclipse.properties -P ${script.dir}/build.properties -D plugin.p2.dir="${plugin.p2.dir}" org.mxunit.eclipseplugin.releng#promote
