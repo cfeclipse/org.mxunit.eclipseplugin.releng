@@ -3,6 +3,7 @@
     <cs:dependencies>
         <cs:dependency name="org.mxunit.eclipseplugin.update" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.platform" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.debug.ui" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature"/>
     </cs:dependencies>
     <cs:actions>
